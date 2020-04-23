@@ -24,6 +24,8 @@
   <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
+  <link rel="stylesheet" href="css/normalize.css">
+
   <style>
     * {
       box-sizing: border-box;
@@ -42,21 +44,14 @@
       justify-content: center;
       align-items: center;
 
-      max-width: 100%;
+      width: 100%;
+      height: 100%;
 
     }
 
-    .artwork__wrapper {
-      display: flex;
-      max-width: 50%;
-      align-self: center;
-    }
+    .artwork__wrapper {}
 
-    .artwork__svg {
-      justify-items: center;
-      padding: 0;
-      margin: 0;
-    }
+    .artwork__svg {}
   </style>
 </head>
 
@@ -65,7 +60,7 @@
   <main>
     <article class="artwork">
       <section class="artwork__wrapper">
-        <svg id="artwork__svg" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 598.02 743.23" preserveAspectRatio="xMaxYMax meet">
+        <svg id="artwork__svg" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000">
           <rect x="30.2" y="584.12" width="536.8" height="127.7" style="fill: #ee4223" />
           <text transform="translate(43.38 693.09)" style="font-size: 135.2786407470703px;fill: #fff;font-family: FuturaPTCond-ExtraBoldObl, Futura PT Cond;font-weight: 800;font-style: oblique">OK<tspan x="147.59" y="0"
               style="letter-spacing: 0.020992550888426203em">AAA</tspan>
@@ -105,8 +100,21 @@
         </svg>
       </section>
     </article>
+
+    <audio src="audio/okaaaay.ogg"></audio>
   </main>
 
+  <script>
+    const button = document.querySelector('.artwork__wrapper');
+
+
+    button.addEventListener('click', function(event) {
+      const audio = document.querySelector('audio');
+      if (!audio) return;
+      audio.currentTime = 0;
+      audio.play();
+    });
+  </script>
 </body>
 
 </html>
