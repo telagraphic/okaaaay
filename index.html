@@ -35,7 +35,12 @@
       display: grid;
       place-items: center;
 
-      min-height: 100vh;
+      width: 100vw;
+      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
+
+      padding: 0;
+      margin: 0;
 
       background: white;
     }
@@ -108,12 +113,25 @@
   <script>
     const button = document.querySelector('.artwork');
 
-
-    button.addEventListener('click', function(event) {
+    function playSound() {
       const audio = document.querySelector('audio');
       if (!audio) return;
       audio.currentTime = 0;
       audio.play();
+    }
+
+    button.addEventListener('click', function(event) {
+      playSound();
+    });
+
+    button.addEventListener('touchstart', event => {
+      event.preventDefault();
+      playSound();
+    });
+
+    window.addEventListener('resize', () => {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
     });
   </script>
 </body>
