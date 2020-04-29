@@ -115,6 +115,7 @@
   <script>
     // Desktop
     const button = document.querySelector('.artwork');
+    const mobileButton = new Hammer(button);
 
     function playSound() {
       const audio = document.querySelector('audio');
@@ -123,15 +124,18 @@
       audio.play();
     }
 
-    button.addEventListener('click', function(event) {
-      playSound();
-    });
-
-    // Mobile
-
-    const mobileButton = new Hammer(button);
-    mobileButton.on("press tap", playSound());
-
+    if (document.documentElement.clienwidth <= 600) {
+      // Mobile
+      mobileButton.on("press tap", function(event) {
+        console.log(event);
+        playSound();
+      });
+    } else {
+      // Desktop
+      button.addEventListener('click', function(event) {
+        playSound();
+      });
+    }
 
     // Mobile VH Fix
 
