@@ -110,7 +110,10 @@
     <audio src="audio/okaaaay.ogg"></audio>
   </main>
 
+  <script src="js/hammer.min.js"></script>
+
   <script>
+    // Desktop
     const button = document.querySelector('.artwork');
 
     function playSound() {
@@ -124,10 +127,13 @@
       playSound();
     });
 
-    button.addEventListener('touchstart', event => {
-      event.preventDefault();
-      playSound();
-    });
+    // Mobile
+
+    const mobileButton = new Hammer(button);
+    mobileButton.on("press tap", playSound());
+
+
+    // Mobile VH Fix
 
     window.addEventListener('resize', () => {
       let vh = window.innerHeight * 0.01;
