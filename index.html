@@ -108,6 +108,7 @@
       <rect class="Border" x="7.63" y="7.51" width="583.18" height="728.31" fill="none" stroke="#231f20" stroke-miterlimit="10" stroke-width="15" />
     </svg>
     <audio src="audio/okaaaay.ogg"></audio>
+    <audio src="audio/okaaaay-kid-frankie.wav"></audio>
   </main>
 
   <script src="js/hammer.min.js"></script>
@@ -115,13 +116,25 @@
   <script>
     // Desktop
     const button = document.querySelector('.artwork');
+
     const mobileButton = new Hammer(button);
+    let index = 0;
 
     function playSound() {
-      const audio = document.querySelector('audio');
+      const audio = document.querySelectorAll('audio');
       if (!audio) return;
-      audio.currentTime = 0;
-      audio.play();
+
+      console.log(index);
+
+      if (index === audio.length) {
+        index = 0;
+      }
+
+      audio[index].currentTime = 0;
+      audio[index].play();
+
+      ++index;
+
     }
 
     if (document.documentElement.clienwidth <= 600) {
