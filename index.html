@@ -23,26 +23,54 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://use.typekit.net/vvy6wdc.css">
 
-  <link rel="stylesheet" href="css/normalize.css">
 
   <style>
-    * {
+    html {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
       box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+      -webkit-box-sizing: inherit;
+      -moz-box-sizing: inherit;
+      box-sizing: inherit;
+    }
+
+    body {
+      margin: 0;
     }
 
     main.page {
       display: grid;
-      place-items: center;
+      justify-content: center;
+      padding-top: 8.4vh;
+      margin: 0;
 
       width: 100vw;
       height: 100vh;
       height: calc(var(--vh, 1vh) * 100);
 
-      padding: 0;
-      margin: 0;
-
       background: white;
+    }
+
+    @media (min-width: 42rem) {
+      main.page {
+        display: grid;
+        justify-content: center;
+        padding-top: 4.2vh;
+        margin: 0;
+
+        width: 100vw;
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+
+        background: white;
+      }
     }
 
     svg.artwork {
@@ -59,6 +87,40 @@
       svg.artwork {
         width: 35vw;
       }
+    }
+
+    footer {
+      display: grid;
+      justify-content: center;
+      align-items: flex-end;
+
+      color: #231f20;
+      font-family: futura-pt-condensed, sans-serif;
+      font-weight: 800;
+      font-style: italic;
+      font-size: 4.20rem;
+    }
+
+    footer a {
+      padding-bottom: 4.20%;
+      color: #231f20;
+      text-decoration: none;
+      font-size: 1.20rem;
+
+      transition: color .25s ease-in-out;
+    }
+
+    @media (min-width: 42rem) {
+      footer a {
+        padding-bottom: 4.20%;
+        font-size: 2.20rem;
+      }
+    }
+
+    footer a:hover,
+    footer a:focus {
+      color: #ee4223;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -107,34 +169,43 @@
       </g>
       <rect class="Border" x="7.63" y="7.51" width="583.18" height="728.31" fill="none" stroke="#231f20" stroke-miterlimit="10" stroke-width="15" />
     </svg>
-    <audio src="audio/okaaaay.ogg"></audio>
-    <audio src="audio/okaaaay-kid-frankie.wav"></audio>
+    <footer>
+      <a href="https://twitter.com/telagraphic">
+        @telagraphic
+      </a>
+    </footer>
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.3/howler.core.min.js"></script>
   <script src="js/hammer.min.js"></script>
 
   <script>
+    const soundEffects = [{
+        sound: new Howl({
+          src: ['./audio/okaaaay-up.wav'],
+          volume: 1
+        })
+      },
+      {
+        sound: new Howl({
+          src: ['./audio/okaaaay-kid-frankie.wav'],
+          volume: 1
+        })
+      }
+    ];
+
     // Desktop
     const button = document.querySelector('.artwork');
-
     const mobileButton = new Hammer(button);
     let index = 0;
 
     function playSound() {
-      const audio = document.querySelectorAll('audio');
-      if (!audio) return;
-
-      console.log(index);
-
-      if (index === audio.length) {
+      if (index === soundEffects.length) {
         index = 0;
       }
 
-      audio[index].currentTime = 0;
-      audio[index].play();
-
+      soundEffects[index].sound.play();
       ++index;
-
     }
 
     if (document.documentElement.clienwidth <= 600) {
