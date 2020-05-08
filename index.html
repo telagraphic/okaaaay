@@ -177,37 +177,42 @@
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.3/howler.core.min.js"></script>
-  <script src="js/hammer.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 
   <script>
     const soundEffects = [{
         sound: new Howl({
-          src: ['./audio/wav/okaaaay-mafia-music.wav'],
-          volume: 1
+          src: ['./sounds/okaaaay-mafia-music.mp3', './sounds/okaaaay-mafia-music.wav'],
+          volume: 1,
+          html5: true
         })
       },
       {
         sound: new Howl({
-          src: ['./audio/wav/okaaaay-great-to-be-here.wav'],
-          volume: 1
+          src: ['./sounds/okaaaay-great-to-be-here.mp3', './sounds/okaaaay-great-to-be-here.wav'],
+          volume: 1,
+          html5: true
         })
       },
       {
         sound: new Howl({
-          src: ['./audio/wav/okaaaay-up.wav'],
-          volume: 1
+          src: ['./sounds/okaaaay-up.mp3', './sounds/okaaaay-up.wav'],
+          volume: 1,
+          html5: true
         })
       },
       {
         sound: new Howl({
-          src: ['./audio/wav/okaaaay-kid-frankie.wav'],
-          volume: 1
+          src: ['./sounds/okaaaay-kid-frankie.mp3', './sounds/okaaaay-kid-frankie.wav'],
+          volume: 1,
+          html5: true
         })
       },
       {
         sound: new Howl({
-          src: ['./audio/wav/okaaaay-burn-after-rolling.wav'],
-          volume: 1
+          src: ['./sounds/okaaaay-burn-after-rolling.mp3', './sounds/okaaaay-burn-after-rolling.wav'],
+          volume: 1,
+          html5: true
         })
       }
     ];
@@ -222,8 +227,12 @@
         index = 0;
       }
 
+      if (soundEffects[index].sound.playing()) {
+        soundEffects[index].sound.stop();
+      }
       soundEffects[index].sound.play();
       ++index;
+
     }
 
     if (document.documentElement.clienwidth <= 600) {
